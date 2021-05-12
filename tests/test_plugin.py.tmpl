@@ -1,0 +1,64 @@
+import pytest
+from wiring import Graph
+
+from tomate.pomodoro import Bus, Config, Events, Session
+from tomate.ui.testing import Q, create_session_payload
+
+
+@pytest.fixture
+def bus() -> Bus:
+    return Bus()
+
+
+@pytest.fixture
+def config(bus, tmpdir) -> Config:
+    cfg = Config(bus)
+    # don't overwrite the config file between tests
+    tmp_path = tmpdir.mkdir("tomate").join("tomate.config")
+    cfg.config_path = lambda: tmp_path.strpath
+    return cfg
+
+
+@pytest.fixture
+def graph() -> Graph:
+    instance = Graph()
+    instance.register_instance(Graph, instance)
+    return instance
+
+
+@pytest.fixture
+def session(mocker):
+    return mocker.Mock(spec=Session)
+
+
+@pytest.fixture
+def plugin(bus, config, graph, session):
+    graph.providers.clear()
+    graph.register_instance("tomate.bus", bus)
+    graph.register_instance("tomate.config", config)
+    graph.register_instance("tomate.session", session)
+
+    import [[ plugin_module ]]_plugin
+
+    instance = [[ plugin_module ]]_plugin.[[ plugin_class ]]()
+    instance.configure(bus, graph)
+    return instance
+
+
+def test_activate_plugin(bus, graph, plugin):
+    plugin.activate()
+
+
+def test_deactivate_plugin(bus, graph, plugin):
+    plugin.deactivate()
+
+
+def test_send_events(bus, plugin):
+    plugin.activate()
+
+    payload = create_session_payload()
+    bus.send(Events.SESSION_START, payload=payload)
+
+
+def test_select_widget(bus, plugin):
+    assert Q.select(plugin.widget, Q.props("label", "content")) is not None
