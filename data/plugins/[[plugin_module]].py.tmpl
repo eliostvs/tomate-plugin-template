@@ -20,7 +20,6 @@ class [[ plugin_class ]](plugin.Plugin):
         super().configure(bus, graph)
         self.my_variables = graph.get("spec")  # get objects registered in the graph
 
-
     @suppress_errors
     def activate(self):
         super().activate()
@@ -29,9 +28,9 @@ class [[ plugin_class ]](plugin.Plugin):
     @suppress_errors
     def deactivate(self):
         super().deactivate()
-        # add logic when the plugin is deactiavted
+        # add logic when the plugin is deactivated
 
     @suppress_errors
     @on(Events.SESSION_START)
     def on_session_start(self, *_, **__):
-        logger.debug("action=session_start")  # liten for events
+        logger.debug("action=session_start")  # listen for events
