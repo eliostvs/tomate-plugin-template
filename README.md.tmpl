@@ -20,11 +20,15 @@ Install the folling native dependencies in you system:
 
 Install the Python development dependencies:
 
-> pip install --user black bumpversion copier pytest pytest-cov pytest-flake8 pytest-mock pre-commit
+```bash
+pip install --user black bumpversion copier pytest pytest-cov pytest-flake8 pytest-mock pre-commit
+```
 
 Create the plugin project:
 
-> copier gh:eliostvs/tomate-plugin-template path/to/plugin/project
+```bash
+copier gh:eliostvs/tomate-plugin-template path/to/plugin/project`
+```
 
 ### Media Files
 
@@ -36,20 +40,28 @@ Personalize the .pre-commit-config.yaml
 
 Format the files using [black](https://pypi.org/project/black/):
 
-> make format
+```bash
+make format
+```
 
 Run test in your local environment:
 
-> make test
+```bash
+make test
+```
 
 Run test inside the docker:
 
-> make docker-test
+```bash
+make docker-test
+```
 
 Test manually the plugin:
 
-> ln -s ~/.local/share/tomate/plugins path/to/plugin/project/data/plugins
-> tomate-gtk -v
+```bash
+ln -s ~/.local/share/tomate/plugins path/to/plugin/project/data/plugins
+tomate-gtk -v
+```
 
 Then activate the plugin through the settings.
 
@@ -57,4 +69,4 @@ Then activate the plugin through the settings.
 
 Update the *[Unrelease]* section in the CHANGELOG.md file then:
 
-> make release-[patch|minor|major]
+`make release-[patch|minor|major]`
