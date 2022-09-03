@@ -10,7 +10,7 @@ from tomate.pomodoro import Events, on, Bus, suppress_errors
 logger = logging.getLogger(__name__)
 
 
-class [[ plugin_class ]](plugin.Plugin):
+class {{ plugin_class }}(plugin.Plugin):
     @suppress_errors
     def __init__(self):
         super().__init__()

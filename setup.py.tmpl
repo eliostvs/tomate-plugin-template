@@ -35,16 +35,16 @@ DATA_FILES = [
 
 
 setup(
-    author="[[ author_name ]]",
-    author_email="[[ author_email ]]",
-    description="[[ plugin_description ]]",
+    author="{{ author_name }}",
+    author_email="{{ author_email }}",
+    description="{{ plugin_description }}",
     include_package_data=True,
     keywords="pomodoro,tomate",
-    license="[[ copyright_license ]]",
+    license="{{ copyright_license }}",
     long_description=open("README.md").read(),
-    name="[[ plugin_package ]]",
+    name="{{ plugin_package }}",
     data_files=find_data_files(DATA_FILES, "tomate"),
-    url="[[ plugin_repository ]]",
+    url="{{ plugin_repository }}",
     version="0.0.0",
     zip_safe=False,
 )

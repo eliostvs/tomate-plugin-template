@@ -38,9 +38,9 @@ def plugin(bus, config, graph, session):
     graph.register_instance("tomate.config", config)
     graph.register_instance("tomate.session", session)
 
-    import [[ plugin_module ]]_plugin
+    import {{ plugin_module }}_plugin
 
-    instance = [[ plugin_module ]]_plugin.[[ plugin_class ]]()
+    instance = {{ plugin_module }}_plugin.{{ plugin_class }}()
     instance.configure(bus, graph)
     return instance
 
