@@ -17,22 +17,22 @@ plugin_repository:
 plugin_package:
   type: str
   help: Your package name
-  default: "tomate-[[ plugin_name|lower|replace(' ', '') ]]-plugin"
+  default: "tomate-{{ plugin_name|lower|replace(' ', '') }}-plugin"
 
 plugin_file:
   type: str
   help: Your plugin info file name
-  default: "[[ plugin_name|lower|replace(' ', '') ]]"
+  default: "{{ plugin_name|lower|replace(' ', '') }}"
 
 plugin_module:
   type: str
   help: Your plugin module name
-  default: "[[ plugin_name|lower|replace(' ', '_') ]]_plugin"
+  default: "{{ plugin_name|lower|replace(' ', '_') }}_plugin"
 
 plugin_class:
   type: str
   help: Your plugin class name
-  default: "[[ plugin_name|title|replace(' ', '') ]]Plugin"
+  default: "{{ plugin_name|title|replace(' ', '') }}Plugin"
 
 author_name:
   type: str
@@ -45,12 +45,12 @@ author_email:
 copyright_holder:
   type: str
   help: The name of the person/entity holding the copyright
-  default: "[[ author_name ]]"
+  default: "{{ author_name }}"
 
 copyright_holder_email:
   type: str
   help: The email of the person/entity holding the copyright
-  default: "[[ author_email ]]"
+  default: "{{ author_email }}"
   
 copyright_date:
   type: str
